@@ -1,7 +1,10 @@
 package com.xx.demo.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +31,12 @@ public class DemoServiceImpl implements DemoService{
 	
 	@Transactional
 	public void update(Demo demo){
-		repository.update(demo);
+		Demo en=repository.get(Demo.class, demo.getId());
+//		en.setBirthday(demo.getBirthday());
+//		en.setGender(demo.getGender());
+//		en.setName(demo.getName());
+		BeanUtils.copyProperties(demo, en , "id","createTime");
+		repository.update(en);
 	}
 	
 	public Demo getById(Long id){
@@ -37,6 +45,11 @@ public class DemoServiceImpl implements DemoService{
 	
 	public void paging(Page page){
 		repository.pagingFromNativeSQL(page, Demo.class, "select * from demo", null);
+	}
+
+	@Override
+	public List<Demo> list() {
+		return repository.getFromNativeSQL("select * from demo", Demo.class, null);
 	}
 
 }

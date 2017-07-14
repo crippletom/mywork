@@ -1,6 +1,7 @@
 package com.xx.demo.web.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -51,8 +52,16 @@ public class DemoController {
 	
 	@RequestMapping(value="/paging",method=RequestMethod.POST)
 	@ResponseBody
-	public Object paging(Page page){
+	public JsonResult paging(Page page){
+		JsonResult result=new JsonResult();
 		service.paging(page);
-		return page.getData();
+		result.put("page", page);
+		return result;
+	}
+	
+	@RequestMapping(value="/list",method=RequestMethod.POST)
+	@ResponseBody
+	public List<Demo> list(){
+		return service.list();
 	}
 }
