@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Table(name="DEMO")
 @Entity
 public class Demo {
@@ -47,6 +49,7 @@ public class Demo {
 		this.name = name;
 	}
 	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	public Date getBirthday() {
 		return birthday;
