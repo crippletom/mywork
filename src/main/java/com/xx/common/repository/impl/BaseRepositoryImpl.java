@@ -6,10 +6,12 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
+import com.xx.auth.entity.AuthUser;
 import com.xx.common.repository.BaseRepository;
 import com.xx.common.repository.mapper.BeanRowMapper;
 import com.xx.common.vo.Page;
@@ -46,6 +48,13 @@ public abstract class BaseRepositoryImpl extends JdbcDaoSupport implements BaseR
 	public <E> E get(Class<E> clazz, Serializable id) {
 		return entityManager.find(clazz, id);
 	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public <E> List<E> queryFromJPA(String ql, Class<E> clz) {
+		Query query=entityManager.createQuery(ql, clz);
+		return query.getResultList();
+	}
 
 	@Override
 	@SuppressWarnings("unchecked")
@@ -58,7 +67,7 @@ public abstract class BaseRepositoryImpl extends JdbcDaoSupport implements BaseR
 	public <V> void pagingFromNativeSQL(Page page, Class<V> clz, String sql, Object[] params) {
 		StringBuilder countSql=new StringBuilder();
 		countSql.append("select count(*) from ( ").append(sql).append(" ) ");
-		Long total=getValue(countSql.toString(),Long.class,params);
+		Long total=getValueFromNativeSQL(countSql.toString(),Long.class,params);
 		page.setTotal(total);
 		
 		long start = page.getPageIndex() * page.getPageSize();
@@ -85,7 +94,7 @@ public abstract class BaseRepositoryImpl extends JdbcDaoSupport implements BaseR
 	}
 
 	@Override
-	public <V> V getValue(String sql, Class<V> clz, Object[] params) {
+	public <V> V getValueFromNativeSQL(String sql, Class<V> clz, Object[] params) {
 		return getJdbcTemplate().queryForObject(sql, params, clz);
 	}
 

@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>  
 <html>
 <head>
 <meta charset="UTF-8">
@@ -11,16 +12,19 @@
 </head>
 <body class="easyui-layout">
 	<div data-options="region:'north',border:false"
-		style="height:50px;padding:10px">人事代理系统</div>
+		style="height:50px;padding:10px">人事代理系统, <shiro:principal/>  </div>
 	<div data-options="region:'west',split:true,title:'菜单'"
 		style="width:200px;">
 		<ul class="easyui-tree">
+			 <shiro:hasAnyRoles name="role01">
 			<li><span>水果</span>
 				<ul>
 					<li><a href="javascript:addTab('苹果','apple');">苹果</a></li>
 					<li><a href="javascript:addTab('橘子','orange');">橘子</a></li>
 				</ul>
 			</li>
+			</shiro:hasAnyRoles>
+			<shiro:hasAnyRoles name="role02">
 			<li><span>蔬菜</span>
 				<ul>
 					<li><a href="javascript:addTab('土豆','tomato');">土豆</a></li>
@@ -28,6 +32,7 @@
 					<li><a href="javascript:addTab('西红柿','potato');">西红柿</a></li>
 				</ul>
 			</li>
+			</shiro:hasAnyRoles>
 			<li><span>示例</span>
 				<ul>
 					<li><a href="javascript:addTab('DEMO','<c:url value="/demo/index" />');">demo</a></li>

@@ -45,4 +45,12 @@
 		</property>	
 	</bean>
 	
+	<bean class="com.xx.common.exception.GlobalExceptionResolver"></bean>
+	
+	<!-- 使用springAOP实现shiro标注鉴权 -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor" />
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean> 
 </beans>

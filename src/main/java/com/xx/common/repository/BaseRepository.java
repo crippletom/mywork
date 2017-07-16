@@ -32,6 +32,14 @@ public interface BaseRepository {
 	 */
 	public <E> E get(Class<E> clazz, Serializable id);
 	
+	/**
+	 * 查询列表
+	 * @param ql
+	 * @param clz
+	 * @return
+	 */
+	public <E> List<E> queryFromJPA(String ql,Class<E> clz);
+	
 	
 	// JDBC
 	/**
@@ -65,5 +73,5 @@ public interface BaseRepository {
 	 * @param params
 	 * @return
 	 */
-	public <V> V getValue(String sql, Class<V> clz, Object[] params);
+	public <V> V getValueFromNativeSQL(String sql, Class<V> clz, Object[] params);
 }

@@ -16,6 +16,7 @@
 		<c3p0.version>0.9.1.2</c3p0.version>
 		<mysql.jdbc.version>5.1.38</mysql.jdbc.version>
 		<oracle.jdbc.version>11.2.0.3</oracle.jdbc.version>
+		<shiro.version>1.2.2</shiro.version>
 		<junit.version>4.11</junit.version>
 		<commons.beanutils.version>1.9.2</commons.beanutils.version>
 		<commons.lang3.version>3.4</commons.lang3.version>
@@ -98,6 +99,29 @@
 			<scope>runtime</scope>
 		</dependency>
 		<!-- 数据持久层依赖 end -->
+		
+		<!--shiro begin-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <!--shiro end-->
 		
 		<dependency>
 		    <groupId>commons-beanutils</groupId>

@@ -3,6 +3,7 @@ package com.xx.demo.web.controller;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +23,13 @@ public class DemoController {
 	@Autowired
 	private DemoService service;
 
+	@RequiresPermissions(value="perm01")
 	@RequestMapping(value="/index",method=RequestMethod.GET)
 	public String index(){
 		return "demo/index";
 	}
 	
+	@RequiresPermissions(value="user:add")
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	@ResponseBody
 	public JsonResult add(Demo demo){
@@ -36,6 +39,7 @@ public class DemoController {
 		return new JsonResult();
 	}
 	
+	@RequiresPermissions(value="user:delete")
 	@RequestMapping(value="/delete",method=RequestMethod.POST)
 	@ResponseBody
 	public JsonResult delete(Long id){
@@ -59,6 +63,7 @@ public class DemoController {
 		return result;
 	}
 	
+	@RequiresPermissions(value="perm02")
 	@RequestMapping(value="/list",method=RequestMethod.POST)
 	@ResponseBody
 	public List<Demo> list(){
