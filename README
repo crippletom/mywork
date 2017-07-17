@@ -1,0 +1,1 @@
+1. 目前仅支持ORACLE数据库，表字段中的时间类型使用Date，不能使用Time和Timestamp.
