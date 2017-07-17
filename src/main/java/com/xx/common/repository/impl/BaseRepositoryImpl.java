@@ -2,6 +2,8 @@ package com.xx.common.repository.impl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -11,7 +13,6 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
-import com.xx.auth.entity.AuthUser;
 import com.xx.common.repository.BaseRepository;
 import com.xx.common.repository.mapper.BeanRowMapper;
 import com.xx.common.vo.Page;
@@ -51,8 +52,12 @@ public abstract class BaseRepositoryImpl extends JdbcDaoSupport implements BaseR
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public <E> List<E> queryFromJPA(String ql, Class<E> clz) {
-		Query query=entityManager.createQuery(ql, clz);
+	public <E> List<E> queryFromJPA(String ql,Map<String,Object> params) {
+		Query query=entityManager.createQuery(ql);
+		Set<String> paramNames=params.keySet();
+		for(String paramName:paramNames){
+			query.setParameter(paramName, params.get(paramName));
+		}
 		return query.getResultList();
 	}
 

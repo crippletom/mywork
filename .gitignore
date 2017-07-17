@@ -3,3 +3,5 @@ target/*
 .classpath
 .project
 .springBeans
+/target
+src/main/resources/database.properties

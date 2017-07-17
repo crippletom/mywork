@@ -1,1 +1,9 @@
+
 1. 目前仅支持ORACLE数据库，表字段中的时间类型使用Date，不能使用Time和Timestamp.
+
+2. src/main/resources/database.properties 这个文件已从版本库中删除并加入忽略列表，
+db.username=rsdl
+db.password=rsdl
+db.driverClass=oracle.jdbc.OracleDriver
+db.connUrl=jdbc\:oracle\:thin\:@127.0.0.1\:1521\:orcl
+

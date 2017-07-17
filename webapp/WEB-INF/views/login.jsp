@@ -5,14 +5,20 @@
     <title>登录</title>
   </head>
   <body>
-    login<br/>
+    请登录<br/>
     <form action="login" method="post">
-    	username<input type="text" name="username" /><br>
-    	password<input type="password" name="password" /><br>
-    	<input type="submit" value="submit">
+    	登录名：<input type="text" name="username" /><br>
+    	密码：<input type="password" name="password" /><br>
+    	验证码：<input type="text" name="verifycode" /><br>
+    			<img src="<c:url value="/verifyCode" />?rnd=2" onclick="changeValidateCode(this)" style="cursor:pointer;" title="点击图片刷新验证码">
+    			<br>
+    	<input type="submit" value="登录">
     </form>
   </body>
   <script type="text/javascript">
-  	
+  	function changeValidateCode(obj) {
+		var timenow = new Date().getTime();
+		obj.src = '<c:url value="/verifyCode" />?rnd=' + timenow;
+	}
   </script>
 </html>

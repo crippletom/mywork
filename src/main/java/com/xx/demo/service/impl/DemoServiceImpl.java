@@ -1,6 +1,8 @@
 package com.xx.demo.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -49,7 +51,14 @@ public class DemoServiceImpl implements DemoService{
 
 	@Override
 	public List<Demo> list() {
-		return repository.getFromNativeSQL("select * from demo", Demo.class, null);
+		
+		String ql="FROM Demo WHERE name=:name and gender=:gender";
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("name", "jack");
+		params.put("gender", 1);
+		return repository.queryFromJPA(ql, params);
+		
+//		return repository.getFromNativeSQL("select * from demo", Demo.class, null);
 	}
 
 }

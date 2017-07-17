@@ -2,6 +2,7 @@ package com.xx.common.repository;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import com.xx.common.vo.Page;
 
@@ -36,9 +37,10 @@ public interface BaseRepository {
 	 * 查询列表
 	 * @param ql
 	 * @param clz
+	 * @param params
 	 * @return
 	 */
-	public <E> List<E> queryFromJPA(String ql,Class<E> clz);
+	public <E> List<E> queryFromJPA(String ql,Map<String,Object> params);
 	
 	
 	// JDBC

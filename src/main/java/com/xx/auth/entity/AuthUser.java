@@ -27,7 +27,10 @@ public class AuthUser implements Serializable{
 	 */
 	private static final long serialVersionUID = -7263843293200573333L;
 	
-	public static final String AUTH_USER="AUTH_USER";
+	/**
+	 * 用户锁定
+	 */
+	public static final Integer USER_LOCKED=0;
 	
 	private Long userId;
 	private String username;

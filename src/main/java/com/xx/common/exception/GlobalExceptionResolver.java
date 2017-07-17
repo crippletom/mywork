@@ -6,11 +6,12 @@ import java.io.Writer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xx.common.tools.JsonTools;
 import com.xx.common.vo.JsonResult;
 
 /**
@@ -42,8 +43,7 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
 				}else if(ex instanceof BusinessException){
 					result.setMessage(ex.getMessage());
 				}
-				ObjectMapper mapper=new ObjectMapper();
-				writer.write(mapper.writeValueAsString(result));
+				writer.write(JsonTools.toJson(result));
 				writer.flush();
 				writer.close();
 			} catch (IOException e) {
@@ -52,6 +52,9 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
 		}else{
 			if(ex instanceof UnauthorizedException){
 				mav=new ModelAndView("unauthorized");
+			}else if(ex instanceof AuthenticationException){
+				mav=new ModelAndView("login");
+				mav.addObject("errorMsg", ex.getMessage());
 			}
 		}
 		return mav;

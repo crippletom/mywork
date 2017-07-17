@@ -29,6 +29,7 @@
 			<value>
 				/login=anon
 				/unauthorized=anon
+				/verifyCode=anon
 				/*=authc
 			</value>
 		</property>
