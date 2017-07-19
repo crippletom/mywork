@@ -39,7 +39,7 @@ public class AuthUserServiceImpl implements AuthUserService {
 	@Override
 	public List<String> loadUserRoles(Long userId) {
 		
-		String sql="select r.* from auth_role r,auth_user_role ur where r.role_id=ur.role_id and and ur.user_id = ? ";
+		String sql="select r.* from auth_role r,auth_user_role ur where r.role_id=ur.role_id and ur.user_id = ? ";
 		List<Object> params=new ArrayList<Object>();
 		params.add(userId);
 		List<AuthRole> roleList=repository.getFromNativeSQL(sql, AuthRole.class, params.toArray());

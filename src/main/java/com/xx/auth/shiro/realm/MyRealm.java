@@ -55,7 +55,7 @@ public class MyRealm extends AuthorizingRealm {
 		//校验验证码
 		if(PropertyTools.isVerifyCode()){
 			String verifyCode=(String)session.getAttribute(PropertyTools.VERIFY_CODE);
-			if(null!=verifyCode && verifyCode.equals(upToken.getVerifyCode())){
+			if(null!=verifyCode && verifyCode.equalsIgnoreCase(upToken.getVerifyCode())){
 			}else{
 				throw new AuthenticationException("验证码错误");
 			}

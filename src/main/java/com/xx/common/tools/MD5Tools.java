@@ -59,4 +59,8 @@ public class MD5Tools {
 		}
 		return md5str.toString().toUpperCase();
 	}
+	
+	public static void main(String[] args) {
+		System.out.println(getMD5("123456"));
+	}
 }

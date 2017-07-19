@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.core.MethodParameter;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -42,9 +41,8 @@ public class AccessLogInterceptor extends HandlerInterceptorAdapter implements A
 			log.setUserName(user.getUsername());
 			log.setFuncDesc(alf.value());
 			log.setAccessTime(new Date());
-			//
-			System.out.println(log);
-			//logService.add(log);
+			//TODO 请求参数
+			logService.add(log);
 		}
 		return super.preHandle(request, response, handler);
 	}

@@ -36,6 +36,11 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
+	
+	<mvc:interceptors>
+		<!-- 日志记录拦截器 -->
+		<bean class="com.xx.log.interceptor.AccessLogInterceptor"></bean>
+	</mvc:interceptors>
 
 	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">

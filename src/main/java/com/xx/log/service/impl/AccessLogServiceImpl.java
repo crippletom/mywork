@@ -1,5 +1,7 @@
 package com.xx.log.service.impl;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,7 @@ public class AccessLogServiceImpl implements AccessLogService {
 	@Autowired
 	private AccessLogRepository repository;
 
+	@Transactional
 	@Override
 	public void add(AccessLog log) {
 		repository.add(log);
