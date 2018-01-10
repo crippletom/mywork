@@ -8,3 +8,5 @@ db.driverClass=oracle.jdbc.OracleDriver
 db.connUrl=jdbc\:oracle\:thin\:@127.0.0.1\:1521\:orcl
 
 3. 访问日志功能，在需要记录访问日志的controller方法上加标注 @AccessLogFunc("功能描述") 
+
+test
